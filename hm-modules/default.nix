@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
-    ./mako   
+    ./mako
+    ./rofi
   ];
 }

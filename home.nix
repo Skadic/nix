@@ -54,8 +54,22 @@
     cmake
     rustup
     ripgrep
-    inputs.eww.packages.x86_64-linux.eww-wayland
+    #inputs.eww.packages.x86_64-linux.eww-wayland
+    eww-wayland
+    wl-clipboard
+    neofetch
+    hyprpaper
+    nurl
   ];
+
+  programs.rofi = {
+    enable = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 
   programs.foot = {
     enable = true;
@@ -119,6 +133,7 @@
     userName = "Skadic";
   };
 
+  skadic.programs.rofi.enable = true;
   skadic.services.mako.enable = true;
   
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
