@@ -1,0 +1,159 @@
+{ config, pkgs, inputs, ... }:
+
+{
+  imports = [
+    ./hm-modules
+  ];
+  # Home Manager needs a bit of information about you and the paths it should
+  # manage.
+  home.username = "skadic";
+  home.homeDirectory = "/home/skadic";
+
+  # This value determines the Home Manager release that your configuration is
+  # compatible with. This helps avoid breakage when a new Home Manager release
+  # introduces backwards incompatible changes.
+  #
+  # You should not change this value, even if you update Home Manager. If you do
+  # want to update the value, then make sure to first check the Home Manager
+  # release notes.
+  home.stateVersion = "23.11"; # Please read the comment before changing.
+
+  # The home.packages option allows you to install Nix packages into your
+  # environment.
+  #home.packages = [
+    # # Adds the 'hello' command to your environment. It prints a friendly
+    # # "Hello, world!" when run.
+    # pkgs.hello
+
+    # # It is sometimes useful to fine-tune packages, for example, by applying
+    # # overrides. You can do that directly here, just don't forget the
+    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+    # # fonts?
+    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+
+    # # You can also create simple shell scripts directly inside your
+    # # configuration. For example, this adds a command 'my-hello' to your
+    # # environment:
+    # (pkgs.writeShellScriptBin "my-hello" ''
+    #   echo "Hello, ${config.home.username}!"
+    # '')
+  #];
+
+  home.packages = with pkgs; [
+    thunderbird
+    floorp
+    kitty
+    zellij
+    bitwarden
+    nextcloud-client
+    trash-cli
+    (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    gcc
+    gnumake
+    ninja
+    cmake
+    rustup
+    ripgrep
+    inputs.eww.packages.x86_64-linux.eww-wayland
+  ];
+
+  programs.foot = {
+    enable = true;
+    settings = {
+      main = {
+        dpi-aware = "no";
+        pad = "5x5 center";
+        font="FantasqueSansM Nerd Font Mono:style=Regular:size=15";
+        font-bold="FantasqueSansM Nerd Font Mono:style=Bold:size=15";
+        font-italic="FantasqueSansM Nerd Font Mono:style=Italic:size=15";
+        font-bold-italic="FantasqueSansM Nerd Font Mono:style=Bold Italic:size=15";
+        workers = 4;
+      };
+
+      colors = {
+        alpha = "0.95";
+        foreground="cdd6f4"; # Text
+        background="1e1e2e"; # Base
+        regular0="45475a";   # Surface 1
+        regular1="f38ba8";   # red
+        regular2="a6e3a1";   # green
+        regular3="f9e2af";   # yellow
+        regular4="89b4fa";   # blue
+        regular5="f5c2e7";   # pink
+        regular6="94e2d5";   # teal
+        regular7="bac2de";   # Subtext 1
+        bright0="585b70";    # Surface 2
+        bright1="f38ba8";    # red
+        bright2="a6e3a1";    # green
+        bright3="f9e2af";    # yellow
+        bright4="89b4fa";    # blue
+        bright5="f5c2e7";    # pink
+        bright6="94e2d5";    # teal
+        bright7="a6adc8";    # Subtext 0
+      };
+    };
+  };
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      rm = "trash";
+    };
+  };
+  programs.starship = { 
+    enable = true;
+    enableFishIntegration = true;
+    enableTransience = true;
+  };
+  programs.btop.enable = true;
+  programs.bat.enable = true;
+  programs.eza = {
+    enable = true;
+    enableAliases = true;
+    git = true;
+    icons = true;
+  };
+  programs.git = {
+    enable = true;
+    delta.enable = true;
+    userEmail = "me@skadic.moe";
+    userName = "Skadic";
+  };
+
+  skadic.services.mako.enable = true;
+  
+  # Home Manager is pretty good at managing dotfiles. The primary way to manage
+  # plain files is through 'home.file'.
+  home.file = {
+    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
+
+    # # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
+    # '';
+  };
+
+  # Home Manager can also manage your environment variables through
+  # 'home.sessionVariables'. If you don't want to manage your shell through Home
+  # Manager then you have to manually source 'hm-session-vars.sh' located at
+  # either
+  #
+  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+  #
+  # or
+  #
+  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
+  #
+  # or
+  #
+  #  /etc/profiles/per-user/root/etc/profile.d/hm-session-vars.sh
+  #
+  home.sessionVariables = {
+    # EDITOR = "emacs";
+    #WLR_RENDERER_ALLOW_SOFTWARE=1;
+    CMAKE_GENERATOR="Ninja";
+  };
+}
