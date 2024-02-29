@@ -4,5 +4,6 @@
     ./mako
     ./rofi
     ./nvim
+    ./foot
   ];
 }

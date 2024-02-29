@@ -3,6 +3,7 @@
 {
   imports = [
     ./hm-modules
+    inputs.nix-colors.homeManagerModules.default
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -62,6 +63,13 @@
     nurl
   ];
 
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  skadic.programs.rofi.enable = true;
+  skadic.programs.nvim.enable = true;
+  skadic.programs.foot.enable = true;
+  skadic.services.mako.enable = true;
+
+
   programs.rofi = {
     enable = true;
   };
@@ -71,42 +79,6 @@
     enableFishIntegration = true;
   };
 
-  programs.foot = {
-    enable = true;
-    settings = {
-      main = {
-        dpi-aware = "no";
-        pad = "5x5 center";
-        font="FantasqueSansM Nerd Font Mono:style=Regular:size=15";
-        font-bold="FantasqueSansM Nerd Font Mono:style=Bold:size=15";
-        font-italic="FantasqueSansM Nerd Font Mono:style=Italic:size=15";
-        font-bold-italic="FantasqueSansM Nerd Font Mono:style=Bold Italic:size=15";
-        workers = 4;
-      };
-
-      colors = {
-        alpha = "0.95";
-        foreground="cdd6f4"; # Text
-        background="1e1e2e"; # Base
-        regular0="45475a";   # Surface 1
-        regular1="f38ba8";   # red
-        regular2="a6e3a1";   # green
-        regular3="f9e2af";   # yellow
-        regular4="89b4fa";   # blue
-        regular5="f5c2e7";   # pink
-        regular6="94e2d5";   # teal
-        regular7="bac2de";   # Subtext 1
-        bright0="585b70";    # Surface 2
-        bright1="f38ba8";    # red
-        bright2="a6e3a1";    # green
-        bright3="f9e2af";    # yellow
-        bright4="89b4fa";    # blue
-        bright5="f5c2e7";    # pink
-        bright6="94e2d5";    # teal
-        bright7="a6adc8";    # Subtext 0
-      };
-    };
-  };
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -133,9 +105,6 @@
     userName = "Skadic";
   };
 
-  skadic.programs.rofi.enable = true;
-  skadic.programs.nvim.enable = true;
-  skadic.services.mako.enable = true;
   
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
