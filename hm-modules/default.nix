@@ -9,5 +9,6 @@
     ./fish
     ./wpaperd
     ./sway
+    ./neofetch
   ];
 }

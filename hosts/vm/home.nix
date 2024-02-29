@@ -28,6 +28,9 @@
     }
   ];
 
+  #colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   #home.packages = [
@@ -66,7 +69,6 @@
     #inputs.eww.packages.x86_64-linux.eww-wayland
     eww-wayland
     wl-clipboard
-    neofetch
     hyprpaper
     nurl
     nodejs
@@ -79,15 +81,20 @@
 
   skadic.windowManager.sway.enable = true;
 
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
   skadic.programs.rofi.enable = true;
   skadic.programs.nvim.enable = true;
   skadic.programs.foot.enable = true;
   skadic.programs.fish.enable = true;
   skadic.programs.wpaperd.enable = true;
+  skadic.programs.neofetch.enable = true;
   skadic.services.mako.enable = true;
 
-  programs.btop.enable = true;
+  programs.btop = {
+    enable = true;
+    settings = {
+      color_theme = "TTY";
+    };
+  };
   programs.bat.enable = true;
   programs.rofi.enable = true;
   programs.vscode.enable = true;
@@ -124,7 +131,7 @@
   };
   programs.zellij = {
     enable = true;
-    enableFishIntegration = true;
+    enableFishIntegration = false;
   };
 
   programs.zoxide = {
