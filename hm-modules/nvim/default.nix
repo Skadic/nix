@@ -22,6 +22,7 @@ in
       vimAlias = true;
       viAlias = true;
       withPython3 = true;
+      defaultEditor = true;
     };
   };
 }

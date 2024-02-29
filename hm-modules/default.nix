@@ -5,5 +5,7 @@
     ./rofi
     ./nvim
     ./foot
+    ./fish
+    #./wpaperd
   ];
 }

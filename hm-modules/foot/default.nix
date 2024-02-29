@@ -1,4 +1,4 @@
-{ lib, inputs, config, ... }:
+{ lib, config, ... }:
 let
   cfg = config.skadic.programs.foot;
   inherit (lib) mkIf mkEnableOption;

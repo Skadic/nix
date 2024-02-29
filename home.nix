@@ -44,7 +44,6 @@
     thunderbird
     floorp
     kitty
-    zellij
     bitwarden
     nextcloud-client
     trash-cli
@@ -61,17 +60,53 @@
     neofetch
     hyprpaper
     nurl
+    nodejs
+    podman
+    podman-compose
+    discord
+    telegram-desktop
+    zotero
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
   skadic.programs.rofi.enable = true;
   skadic.programs.nvim.enable = true;
   skadic.programs.foot.enable = true;
+  skadic.programs.fish.enable = true;
+  #skadic.programs.wpaperd.enable = true;
   skadic.services.mako.enable = true;
 
 
-  programs.rofi = {
+  programs.btop.enable = true;
+  programs.bat.enable = true;
+  programs.rofi.enable = true;
+  programs.vscode.enable = true;
+
+  programs.wpaperd = {
     enable = true;
+  };
+
+  programs.fzf = let inherit (config.colorScheme) palette; in {
+    enable = true;
+    enableFishIntegration = true;
+    colors = {
+      fg = "#${palette.base05}";        # Text
+      bg = "#${palette.base00}";        # Base
+      "bg+" = "#${palette.base03}";     # Surface 1
+      "fg+" = "#${palette.base05}";     # Surface 1
+      hl = "#${palette.base08}";        # red
+      "hl+" = "#${palette.base08}";     # red
+      border = "#${palette.base0D}";    # blue
+      prompt = "#${palette.base0B}";    # green
+      info = "#${palette.base0A}";      # yellow
+      pointer = "#${palette.base0A}";   # yellow
+      marker = "#${palette.base0B}";    # green
+      header = "#${palette.base0D}";    # teal
+    };
+  };
+  programs.zellij = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   programs.zoxide = {
@@ -79,19 +114,11 @@
     enableFishIntegration = true;
   };
 
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      rm = "trash";
-    };
-  };
   programs.starship = { 
     enable = true;
     enableFishIntegration = true;
     enableTransience = true;
   };
-  programs.btop.enable = true;
-  programs.bat.enable = true;
   programs.eza = {
     enable = true;
     enableAliases = true;
