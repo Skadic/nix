@@ -134,6 +134,7 @@
   };
 
   skadic.programs.rofi.enable = true;
+  skadic.programs.nvim.enable = true;
   skadic.services.mako.enable = true;
   
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

@@ -3,5 +3,6 @@
   imports = [
     ./mako
     ./rofi
+    ./nvim
   ];
 }
