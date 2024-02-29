@@ -23,10 +23,10 @@
     in
     {
     
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
           specialArgs = {inherit inputs self;};
           modules = [ 
-            ./configuration.nix
+            ./hosts/vm/configuration.nix
             inputs.home-manager.nixosModules.home-manager
           ];
         };

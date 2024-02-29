@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./hm-modules
+    ../../hm-modules
     inputs.nix-colors.homeManagerModules.default
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -73,7 +73,7 @@
   skadic.programs.nvim.enable = true;
   skadic.programs.foot.enable = true;
   skadic.programs.fish.enable = true;
-  #skadic.programs.wpaperd.enable = true;
+  skadic.programs.wpaperd.enable = true;
   skadic.services.mako.enable = true;
 
 

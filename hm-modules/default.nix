@@ -6,6 +6,6 @@
     ./nvim
     ./foot
     ./fish
-    #./wpaperd
+    ./wpaperd
   ];
 }
