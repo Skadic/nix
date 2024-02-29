@@ -19,6 +19,15 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
+  monitors = [
+    {
+      name = "Virtual-1";
+      width = 1920;
+      height = 1440;
+      refreshRate = 60;
+    }
+  ];
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   #home.packages = [
@@ -68,6 +77,8 @@
     zotero
   ];
 
+  skadic.windowManager.sway.enable = true;
+
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
   skadic.programs.rofi.enable = true;
   skadic.programs.nvim.enable = true;
@@ -76,15 +87,22 @@
   skadic.programs.wpaperd.enable = true;
   skadic.services.mako.enable = true;
 
-
   programs.btop.enable = true;
   programs.bat.enable = true;
   programs.rofi.enable = true;
   programs.vscode.enable = true;
 
-  programs.wpaperd = {
-    enable = true;
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5 = {
+      addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+    };
   };
+
+  services.blueman-applet.enable = true;
 
   programs.fzf = let inherit (config.colorScheme) palette; in {
     enable = true;
@@ -167,5 +185,11 @@
     # EDITOR = "emacs";
     #WLR_RENDERER_ALLOW_SOFTWARE=1;
     CMAKE_GENERATOR="Ninja";
+    # https://www.reddit.com/r/swaywm/comments/i6qlos/how_do_i_use_an_ime_with_sway/g1lk4xh?utm_source=share&utm_medium=web2x&context=3
+    INPUT_METHOD="fcitx";
+    QT_IM_MODULE="fcitx";
+    GTK_IM_MODULE="fcitx";
+    XMODIFIERS="@im=fcitx";
+    XIM_SERVERS="fcitx";
   };
 }

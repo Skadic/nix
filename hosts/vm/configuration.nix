@@ -71,6 +71,11 @@
     enable = true;
   };
 
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
+
   # Configure keymap in X11
   services.xserver = {
     layout = "de";
@@ -82,10 +87,12 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.blueman.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
+  hardware.bluetooth.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
