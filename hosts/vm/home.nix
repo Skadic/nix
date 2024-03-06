@@ -1,5 +1,7 @@
 { config, pkgs, inputs, ... }:
-
+let 
+  flake-utils = inputs.flake-utils.lib;
+in
 {
   imports = [
     ../../hm-modules
@@ -19,6 +21,7 @@
   # release notes.
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
+  system = flake-utils.system.x86_64-linux;
   monitors = [
     {
       name = "Virtual-1";
@@ -84,6 +87,7 @@
   skadic.programs.rofi.enable = true;
   skadic.programs.nvim.enable = true;
   skadic.programs.foot.enable = true;
+  skadic.programs.kitty.enable = true;
   skadic.programs.fish.enable = true;
   skadic.programs.wpaperd.enable = true;
   skadic.programs.neofetch.enable = true;

@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./system.nix
     ./monitors
     ./mako
     ./rofi
@@ -10,5 +11,6 @@
     ./wpaperd
     ./sway
     ./neofetch
+    ./kitty
   ];
 }

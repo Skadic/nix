@@ -1,6 +1,7 @@
-{config, lib, ...}:
+{config, lib, inputs, ...}:
 let
   cfg = config.skadic.windowManager.sway;
+  sway_update = "${inputs.sway_update.packages.${config.system}.sway_update}/bin/sway_update";
   inherit (lib) mkEnableOption mkIf mkOptionDefault;
 in 
 {
@@ -15,6 +16,14 @@ in
     in mkIf cfg.enable {
       enable = true;
       extraConfigEarly = ''
+        set $ws1 1
+        set $ws2 2
+        set $ws3 3
+        set $ws4 4
+        set $ws5 5
+        set $ws6 6
+        set $ws7 7
+        set $ws8 8
         set $terminal ${terminal}
         set $cl_acce #${palette.base0B}
         set $cl_high #${palette.base0B}
@@ -91,6 +100,8 @@ in
           { command = "wpaperd"; }
           { command = "fcitx5"; }
           { command = "eww open topbar"; }
+          { command = "${sway_update} window mode shutdown"; }
+          { command = "${sway_update} workspace shutdown"; }
         ];
         keybindings = let 
           mod = config.wayland.windowManager.sway.config.modifier;
