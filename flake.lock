@@ -160,13 +160,30 @@
         "type": "github"
       }
     },
+    "nvimconf": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709719424,
+        "narHash": "sha256-qc0RHr4kaF/xfMWut1IKtVEKHrc0YwxmP+cqRG/fyxA=",
+        "owner": "Skadic",
+        "repo": "nvim",
+        "rev": "d4bf09f594bf2620ec12172a76d4f2604c5edf42",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Skadic",
+        "repo": "nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "eww": "eww",
         "home-manager": "home-manager",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nvimconf": "nvimconf"
       }
     },
     "rust-overlay": {

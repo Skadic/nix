@@ -28,8 +28,8 @@
     }
   ];
 
-  #colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
-  colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  #colorScheme = inputs.nix-colors.colorSchemes.kanagawa;
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
