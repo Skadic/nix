@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, pkgs-unstable, inputs, ... }:
 let 
   flake-utils = inputs.flake-utils.lib;
 in
@@ -61,7 +61,6 @@ in
     kitty
     bitwarden
     nextcloud-client
-    trash-cli
     (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
     gcc
     gnumake
@@ -69,8 +68,7 @@ in
     cmake
     rustup
     ripgrep
-    #inputs.eww.packages.x86_64-linux.eww-wayland
-    eww-wayland
+    inputs.eww.packages.x86_64-linux.eww
     wl-clipboard
     hyprpaper
     nurl
@@ -80,6 +78,8 @@ in
     discord
     telegram-desktop
     zotero
+    pkgs-unstable.obsidian
+    logseq
   ];
 
   skadic.windowManager.sway.enable = true;
@@ -89,7 +89,8 @@ in
   skadic.programs.foot.enable = true;
   skadic.programs.kitty.enable = true;
   skadic.programs.fish.enable = true;
-  skadic.programs.wpaperd.enable = true;
+  skadic.programs.trash-cli.enable = true;
+  skadic.programs.swww.enable = true;
   skadic.programs.neofetch.enable = true;
   skadic.services.mako.enable = true;
 

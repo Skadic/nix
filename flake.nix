@@ -12,11 +12,9 @@
 
     flake-utils = {
       url = "github:numtide/flake-utils";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     eww = {
-      url = "github:ralismark/eww/tray-3";
-      #url = "github:elkowar/eww";
+      url = "github:elkowar/eww";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
@@ -41,7 +39,7 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+      pkgs-unstable = import nixpkgs-unstable {inherit system; config.allowUnfree = true; };
     in
     {
     

@@ -97,7 +97,7 @@ in
           };
         };
         startup = [
-          { command = "wpaperd"; }
+          #{ command = "wpaperd"; }
           { command = "fcitx5"; }
           { command = "eww open topbar"; }
           { command = "${sway_update} window mode shutdown"; }

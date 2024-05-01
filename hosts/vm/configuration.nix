@@ -2,9 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, self, inputs, ... }:
-
-{
+{ config, pkgs, pkgs-unstable, self, inputs, ... }: let 
+  inherit (inputs) nixpkgs-unstable;
+in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -18,7 +18,7 @@
   main-user.hashedPasswordFile = "${self}/passwd.txt";
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs pkgs-unstable; };
     useGlobalPkgs = true;
     useUserPackages = true;
     users = {

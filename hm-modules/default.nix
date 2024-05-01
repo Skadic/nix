@@ -12,5 +12,7 @@
     ./sway
     ./neofetch
     ./kitty
+    ./swww
+    ./trash-cli
   ];
 }

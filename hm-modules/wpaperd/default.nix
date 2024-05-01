@@ -21,5 +21,8 @@ in {
         };
       };
     };
+    wayland.windowManager.sway.config.startup = [ 
+        { command = "wpaperd"; }
+    ];
   };
 }
