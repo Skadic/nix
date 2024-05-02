@@ -2,17 +2,34 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, self, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../main-user.nix
     ];
+
+
+  main-user.enable = true;
+  main-user.userName = "skadic";
+  main-user.description = "Skadic";
+  main-user.hashedPasswordFile = "${self}/passwd.txt";
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs pkgs-unstable; };
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users = {
+      "skadic" = import ./home.nix;
+    };
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.useOSProber = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -20,6 +37,8 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -48,18 +67,27 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  programs.sway = {
+    enable = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
 
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
-    xkbVariant = "intl";
+    xkbVariant = "intl-unicode";
   };
 
   # Configure console keymap
-  console.keyMap = "us-acentos";
+  console.keyMap = "us";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.blueman.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -82,17 +110,24 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.skadic = {
-    isNormalUser = true;
-    description = "skadic";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
-  };
+  # users.users.skadic = {
+  #   isNormalUser = true;
+  #   description = "skadic";
+  #   extraGroups = [ "networkmanager" "wheel" ];
+  #   packages = with pkgs; [
+  #   #  thunderbird
+  #   ];
+  # };
 
-  # Install firefox.
-  programs.firefox.enable = true;
+  programs.neovim.enable = true;
+  programs.git.enable = true;
+  programs.fish.enable = true;
+  services.tailscale.enable = true;
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  services.qemuGuest.enable = true;
+  
+  # # Install firefox.
+  # programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -100,9 +135,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    git
+    curl
+    gnome.adwaita-icon-theme
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
