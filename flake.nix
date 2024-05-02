@@ -51,5 +51,13 @@
           ];
         };
 
+      nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
+          specialArgs = {inherit inputs self pkgs-unstable;};
+          modules = [ 
+            ./hosts/tower/configuration.nix
+            inputs.home-manager.nixosModules.home-manager
+          ];
+        };
+
     };
 }
