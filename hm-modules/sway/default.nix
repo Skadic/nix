@@ -59,10 +59,10 @@ in
           border = 3;
         };
         input = {
-          "type:keyboard" = {
-            xkb_layout = "de";
-            xkb_variant = "neo_qwertz";
-          };
+          #"type:keyboard" = {
+          #  xkb_layout = "de";
+          #  xkb_variant = "neo_qwertz";
+          #};
           "type:pointer" = {
             accel_profile = "flat";
             pointer_accel = "0";
