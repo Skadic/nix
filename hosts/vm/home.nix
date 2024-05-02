@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 let 
   flake-utils = inputs.flake-utils.lib;
 in
@@ -68,7 +68,6 @@ in
     cmake
     rustup
     ripgrep
-    inputs.eww.packages.x86_64-linux.eww
     wl-clipboard
     hyprpaper
     nurl
@@ -78,12 +77,13 @@ in
     discord
     telegram-desktop
     zotero
-    pkgs-unstable.obsidian
+    obsidian
     logseq
   ];
 
   skadic.windowManager.sway.enable = true;
 
+  skadic.programs.eww.enable = true;
   skadic.programs.rofi.enable = true;
   skadic.programs.nvim.enable = true;
   skadic.programs.foot.enable = true;
@@ -151,7 +151,7 @@ in
   };
   programs.eza = {
     enable = true;
-    enableAliases = true;
+    enableFishIntegration = true;
     git = true;
     icons = true;
   };

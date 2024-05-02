@@ -2,11 +2,10 @@
   description = "Nixos config flake";
 
   inputs = {
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -33,18 +32,23 @@
       url = "github:Skadic/sway_update";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    neovim = {
+      url = "github:neovim/neovim?dir=contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-unstable = import nixpkgs-unstable {inherit system; config.allowUnfree = true; };
+      overlays = [ inputs.neovim.overlay ];
     in
     {
     
       nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs self pkgs-unstable;};
+          specialArgs = {inherit inputs self overlays;};
           modules = [ 
             ./hosts/vm/configuration.nix
             inputs.home-manager.nixosModules.home-manager
@@ -52,7 +56,7 @@
         };
 
       nixosConfigurations.tower = nixpkgs.lib.nixosSystem {
-          specialArgs = {inherit inputs self pkgs-unstable;};
+          specialArgs = {inherit inputs self overlays;};
           modules = [ 
             ./hosts/tower/configuration.nix
             inputs.home-manager.nixosModules.home-manager

@@ -14,5 +14,6 @@
     ./kitty
     ./swww
     ./trash-cli
+    ./eww
   ];
 }

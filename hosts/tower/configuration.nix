@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, self, inputs, ... }:
+{ config, pkgs, self, inputs, overlays, ... }:
 
 {
   imports =
@@ -18,7 +18,7 @@
   main-user.hashedPasswordFile = "${self}/passwd.txt";
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs pkgs-unstable; };
+    extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
     useUserPackages = true;
     users = {
@@ -81,9 +81,9 @@
   };
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "intl-unicode";
+    variant = "intl-unicode";
   };
 
   # Configure console keymap
@@ -135,6 +135,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = overlays;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

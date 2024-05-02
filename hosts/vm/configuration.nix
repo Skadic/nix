@@ -2,9 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, self, inputs, ... }: let 
-  inherit (inputs) nixpkgs-unstable;
-in {
+{ config, pkgs, self, inputs, ... }:
+{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -18,7 +17,7 @@ in {
   main-user.hashedPasswordFile = "${self}/passwd.txt";
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs pkgs-unstable; };
+    extraSpecialArgs = { inherit inputs; };
     useGlobalPkgs = true;
     useUserPackages = true;
     users = {
@@ -77,9 +76,9 @@ in {
   };
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "de";
-    xkbVariant = "neo_qwertz";
+    variant = "neo_qwertz";
   };
 
   # Configure console keymap

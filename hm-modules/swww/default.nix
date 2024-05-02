@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-unstable, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.skadic.programs.swww;
   inherit (lib) mkEnableOption mkIf;
@@ -8,7 +8,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs-unstable.swww ];
+    home.packages = [ pkgs.swww ];
     home.sessionVariables = {
       SWWW_TRANSITION_FPS=60;
       SWWW_TRANSITION_STEP=90; # 2
