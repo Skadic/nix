@@ -18,7 +18,7 @@
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
+  fileSystems."/boot/efi" =
     { device = "/dev/nvme0n1p2";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
