@@ -78,8 +78,17 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    config = {
+      sway = {
+        default = [
+          "wlr" 
+          "gtk" 
+        ];
+      };
+    };
   };
 
+  services.dbus.enable = true;
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";

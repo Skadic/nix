@@ -87,6 +87,8 @@ in
     enable = true; 
     topbar-src = "topbar-laptop.yuck";
   };
+  skadic.programs.fcitx5.enable = true;
+  skadic.programs.zellij.enable = true;
   skadic.programs.rofi.enable = true;
   skadic.programs.nvim.enable = true;
   skadic.programs.foot.enable = true;
@@ -108,16 +110,6 @@ in
   programs.rofi.enable = true;
   programs.vscode.enable = true;
 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
-    fcitx5 = {
-      addons = with pkgs; [
-        fcitx5-mozc
-        fcitx5-gtk
-      ];
-    };
-  };
-
   services.blueman-applet.enable = true;
 
   programs.fzf = let inherit (config.colorScheme) palette; in {
@@ -137,10 +129,6 @@ in
       marker = "#${palette.base0B}";    # green
       header = "#${palette.base0D}";    # teal
     };
-  };
-  programs.zellij = {
-    enable = true;
-    enableFishIntegration = false;
   };
 
   programs.zoxide = {
@@ -201,11 +189,5 @@ in
     # EDITOR = "emacs";
     #WLR_RENDERER_ALLOW_SOFTWARE=1;
     CMAKE_GENERATOR="Ninja";
-    # https://www.reddit.com/r/swaywm/comments/i6qlos/how_do_i_use_an_ime_with_sway/g1lk4xh?utm_source=share&utm_medium=web2x&context=3
-    INPUT_METHOD="fcitx";
-    QT_IM_MODULE="fcitx";
-    GTK_IM_MODULE="fcitx";
-    XMODIFIERS="@im=fcitx";
-    XIM_SERVERS="fcitx";
   };
 }

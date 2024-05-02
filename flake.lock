@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "catppuccin-fcitx5": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1664946380,
+        "narHash": "sha256-uFaCbyrEjv4oiKUzLVFzw+UY54/h7wh2cntqeyYwGps=",
+        "owner": "catppuccin",
+        "repo": "fcitx5",
+        "rev": "ce244cfdf43a648d984719fdfd1d60aab09f5c97",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "fcitx5",
+        "type": "github"
+      }
+    },
     "dots": {
       "flake": false,
       "locked": {
@@ -269,6 +285,7 @@
     },
     "root": {
       "inputs": {
+        "catppuccin-fcitx5": "catppuccin-fcitx5",
         "dots": "dots",
         "eww": "eww",
         "flake-utils": "flake-utils_2",

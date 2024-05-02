@@ -15,5 +15,7 @@
     ./swww
     ./trash-cli
     ./eww
+    ./zellij
+    ./fcitx5
   ];
 }
