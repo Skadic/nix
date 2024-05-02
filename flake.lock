@@ -19,11 +19,11 @@
     "dots": {
       "flake": false,
       "locked": {
-        "lastModified": 1714670608,
-        "narHash": "sha256-F26/zK2JRYhBRJnB0phaOn+ODYbHcshLp2IiijeHWVg=",
+        "lastModified": 1714681590,
+        "narHash": "sha256-61h371aco0wNsw2CDJB12ln7MvjsJxhOJcM5g4rV4VI=",
         "owner": "Skadic",
         "repo": "dots",
-        "rev": "3c545c81d331a478035be03a7123a9e41c154225",
+        "rev": "9b5f698d521408fa818fbff98e877131d8b12eb5",
         "type": "github"
       },
       "original": {

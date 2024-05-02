@@ -83,7 +83,10 @@ in
 
   skadic.windowManager.sway.enable = true;
 
-  skadic.programs.eww.enable = true;
+  skadic.programs.eww = {
+    enable = true; 
+    topbar-src = "topbar-laptop.yuck";
+  };
   skadic.programs.rofi.enable = true;
   skadic.programs.nvim.enable = true;
   skadic.programs.foot.enable = true;
@@ -100,6 +103,7 @@ in
       color_theme = "TTY";
     };
   };
+  programs.jq.enable = true;
   programs.bat.enable = true;
   programs.rofi.enable = true;
   programs.vscode.enable = true;
