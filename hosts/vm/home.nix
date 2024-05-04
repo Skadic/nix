@@ -79,6 +79,7 @@ in
     zotero
     obsidian
     logseq
+    pamixer
   ];
 
   skadic.windowManager.sway.enable = true;

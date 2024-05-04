@@ -82,14 +82,13 @@ in
     hyprpaper
     nurl
     nodejs
-    podman
-    podman-compose
     discord
     telegram-desktop
     zotero
     obsidian
     logseq
     pavucontrol
+    pamixer
   ];
 
   skadic.windowManager.sway.enable = true;
