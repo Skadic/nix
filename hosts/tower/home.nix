@@ -76,7 +76,6 @@ in
     gnumake
     ninja
     cmake
-    rustup
     ripgrep
     wl-clipboard
     hyprpaper

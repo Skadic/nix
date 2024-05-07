@@ -15,6 +15,7 @@ in
       inherit (config.colorScheme) palette;
     in mkIf cfg.enable {
       enable = true;
+      systemd.enable = true;
       extraConfigEarly = ''
         set $ws1 1
         set $ws2 2
@@ -102,6 +103,8 @@ in
           { command = "eww open topbar"; }
           { command = "${sway_update} window mode shutdown"; }
           { command = "${sway_update} workspace shutdown"; }
+          { command = "systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP"; }
+          { command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway"; }
         ];
         keybindings = let 
           mod = config.wayland.windowManager.sway.config.modifier;

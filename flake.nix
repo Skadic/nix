@@ -42,13 +42,18 @@
       url = "github:catppuccin/fcitx5";
       flake = false;
     };
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, fenix, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      overlays = [ inputs.neovim.overlay ];
+      overlays = [ inputs.neovim.overlay fenix.overlays.default ];
     in
     {
     

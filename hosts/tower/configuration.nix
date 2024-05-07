@@ -79,6 +79,14 @@
     enable = true;
     wlr.enable = true;
     config = {
+      common = {
+        default = [
+          "gtk"
+        ];
+        "org.freedesktop.portal.Settings" = [
+          "gtk"
+        ];
+      };
       sway = {
         default = [
           "wlr" 
@@ -135,6 +143,10 @@
   programs.neovim.enable = true;
   programs.git.enable = true;
   programs.fish.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [];
+  };
   services.tailscale.enable = true;
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   services.qemuGuest.enable = true;
@@ -154,6 +166,14 @@
     gnome.adwaita-icon-theme
     pulseaudio
     docker-compose
+    (fenix.complete.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
+    rust-analyzer
   ];
 
   virtualisation.docker = {
